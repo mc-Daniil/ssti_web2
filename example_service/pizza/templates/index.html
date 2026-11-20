@@ -1,0 +1,34 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Slice House · Pizza delivery</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script defer src="{{ url_for('static', filename='app.js') }}"></script>
+</head>
+<body>
+<header><a class="brand" href="/">SLICE<span>HOUSE</span><small>GOOD PIZZA. GREAT EVENINGS.</small></a>
+  <nav aria-label="Main navigation"><a href="#menu">Menu</a><a href="#orders">My deliveries</a><button id="account-button" class="outline">Sign in</button><button id="logout" class="outline" hidden>Sign out</button></nav>
+</header>
+<main>
+  <section class="hero"><div><p class="eyebrow">YOUR NEXT GREAT SLICE</p><h1>Good food.<br>At your doorstep.</h1><p>Pick your favorite, make it a pizza night,<br>and follow your order all the way home.</p><a class="button" href="#menu">Explore the menu</a></div><div class="hero-art"><img src="{{ url_for('web.image', filename='hero.jpg') }}" alt="Freshly baked pizzas with mozzarella, basil, and pepperoni" width="1100" height="1375" fetchpriority="high"><span>Made for sharing.<br>Or keeping.</span></div></section>
+  <div id="notice" role="status" aria-live="polite" hidden></div>
+  <div class="shop-layout"><section id="menu"><p class="eyebrow">FIND YOUR FAVORITE</p><h2>The pizza menu</h2><p class="muted">Simple choices. All the good stuff.</p><div id="menu-list" class="menu-list">Loading menu…</div></section>
+    <aside class="basket"><div class="section-title"><h2>Your basket</h2><span id="basket-count" class="badge">0 items</span></div><div id="cart"></div><div class="total"><span>Total</span><strong id="total">$0.00</strong></div>
+      <form id="checkout"><label>Delivery address<textarea name="address" required maxlength="500" rows="2" autocomplete="street-address" placeholder="Street, building, apartment"></textarea></label><label>Phone number<input name="phone" type="tel" required maxlength="40" autocomplete="tel" placeholder="Your contact number"></label><button id="place-order" class="primary" type="submit">Place order</button><p class="muted small">Sign in to place an order. Payment is not collected online.</p></form>
+    </aside>
+  </div>
+  <section id="orders" class="orders"><div class="section-title"><div><p class="eyebrow">FROM OUR OVEN TO YOUR DOOR</p><h2>Your deliveries</h2></div><button id="refresh" class="outline">Refresh</button></div><p id="orders-hint" class="muted">Sign in to see your deliveries.</p><div id="current-orders"></div>
+    <form id="delivery-lookup" class="delivery-lookup"><label for="delivery-id">Find a delivery by ID<input id="delivery-id" name="delivery_id" type="number" min="1" max="2147483647" step="1" required placeholder="Enter delivery ID"></label><button type="submit" class="primary">Find delivery</button></form>
+    <div id="delivery-result" aria-live="polite"></div>
+    <details id="history-panel" hidden><summary>Order history</summary><div id="history"></div><div class="pager"><button id="previous" class="outline">Previous</button><span id="page-label"></span><button id="next" class="outline">Next</button></div></details>
+  </section>
+  <section id="staff-panel" class="orders" hidden><p class="eyebrow">KITCHEN & DELIVERY</p><h2>Staff order queue</h2><div id="staff-orders"></div></section>
+</main>
+<footer><strong>SLICE HOUSE</strong><span>A little happiness, by the slice.</span><details class="photo-credits"><summary>Photo credits</summary><p>Photos on Unsplash by <a href="https://unsplash.com/photos/Dd_U2cz8stw">Natalie Sum</a>, <a href="https://unsplash.com/photos/KIIhnE4GIa0">Thomas Wavid Johns</a>, <a href="https://unsplash.com/photos/jkC1ul95ujQ">Wesual Click</a>, and <a href="https://unsplash.com/photos/A4EtgLN1_Fw">sheri silver</a>. Photos are illustrative.</p></details></footer>
+<dialog id="auth-dialog"><div class="section-title"><h2 id="auth-title">Welcome back</h2><button id="close-auth" class="outline" aria-label="Close account dialog">Close</button></div><p class="muted">Your next pizza night starts here.</p>
+  <form id="auth-form"><label id="name-field" hidden>Your name<input name="name" maxlength="100" autocomplete="name"></label><label>Email<input name="email" type="email" required maxlength="254" autocomplete="email"></label><label>Password<input name="password" type="password" required maxlength="128" autocomplete="current-password"></label><p id="auth-error" role="alert"></p><button id="auth-submit" class="primary" type="submit">Sign in</button></form><button id="toggle-auth" class="text-button">New here? Create an account</button>
+</dialog>
+</body></html>
+
+
